@@ -1,0 +1,263 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/* Start Hangman Game*/
+.hangman-container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.game-info {
+    display: flex;
+}
+.game-info .game-name {
+    flex: 1;
+}
+.game-info .category {
+    flex: 1;
+    text-align: right;
+}
+.game-info .category span {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #E91E63
+}
+
+hr {
+    border: 1px solid #ccc;
+}
+
+.row {
+    display: flex;  
+}
+
+.hangman-draw {
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 20px;
+    height: 324px;
+}
+.hangman-draw .the-draw {
+    width: 60px;
+    height: 280px;
+    border-bottom: 4px solid #222;
+    position: relative;
+    margin: auto;
+    left: -60px;
+    display: none;
+}
+
+.hangman-draw .the-stand{
+    position: absolute;
+    background: #222;
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    display: none;
+}
+
+.hangman-draw .the-hang {
+    display: none;
+}
+.hangman-draw .the-hang::before {
+    content: '';
+    position: absolute;
+    background: #222;
+    height: 4px;
+    width: 100px;
+    left: 30px;
+    top: 15px;
+}
+.hangman-draw .the-hang::after {
+    content: '';
+    position: absolute;
+    background: #222;
+    height: 30px;
+    width: 4px;
+    left: 130px;
+    top: 15px;
+}
+
+.hangman-draw  .the-rope {
+    width: 70px;
+    height: 70px;
+    border: 4px dashed #222;
+    left: 95px;
+    top: 44px;
+    position: absolute;
+    border-radius: 50%;
+    display: none;
+}
+.hangman-draw  .the-man .head {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #222;
+    left: 105px;
+    top: 55px;
+    position: absolute;
+    border-radius: 50%;
+    display: none
+}
+.hangman-draw  .the-man .body {
+    width: 4px;
+    height: 110px;
+    background: #222;
+    left: 130px;
+    top: 102px;
+    position: absolute;
+    display: none;
+}
+
+.hangman-draw  .the-man .hands {
+    display: none;
+}
+.hangman-draw  .the-man .hands::before,
+.hangman-draw  .the-man .hands::after {
+    content: '';
+    position: absolute;
+    background: #222;
+    width: 50px;
+    height: 4px;
+    top: 140px
+}
+
+.hangman-draw  .the-man .hands::before {
+    left: 85px;
+    transform: rotate(30deg);
+}
+.hangman-draw  .the-man .hands::after {
+    left: 130px;
+    transform: rotate(-30deg);
+}
+
+.hangman-draw  .the-man .legs {
+    display: none;
+}
+.hangman-draw  .the-man .legs::before,
+.hangman-draw  .the-man .legs::after {
+    content: '';
+    position: absolute;
+    background: #222;
+    width: 50px;
+    height: 4px;
+    top: 220px
+}
+
+.hangman-draw  .the-man .legs::before {
+    left: 85px;
+    transform: rotate(-30deg);
+}
+.hangman-draw  .the-man .legs::after {
+    left: 130px;
+    transform: rotate(30deg);
+}
+
+.hangman-draw.wrong-1 .the-draw {
+    display: block;
+}
+.hangman-draw.wrong-2 .the-stand {
+    display: block;
+}
+.hangman-draw.wrong-3 .the-hang {
+    display: block;
+}
+.hangman-draw.wrong-4 .the-rope {
+    display: block;
+}
+.hangman-draw.wrong-5 .head {
+    display: block;
+}
+.hangman-draw.wrong-6 .body {
+    display: block;
+}
+.hangman-draw.wrong-7 .hands {
+    display: block;
+}
+.hangman-draw.wrong-8 .legs {
+    display: block;
+}
+
+.letters {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+}
+.letters.noagain  {
+    pointer-events: none;
+}
+.letters .letter-box {
+    background: #009688;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    width: 55px;
+    height: 55px;
+    line-height: 40px;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.letters .letter-box.clicked {
+    background-color: #222;
+    opacity: .2;
+    pointer-events: none;
+}
+
+.letters-gusess {
+    display: flex;
+    margin: 10px auto;
+    background-color: #f8f8f8;
+    padding: 20px;
+    justify-content: center;
+    min-height: 104px;
+}
+
+.letters-gusess span {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+    margin-right: 10px;
+    text-align: center;
+    background-color: #fdfdfd;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 3px solid #222;
+    transition: .3s;
+}
+
+.letters-gusess span.with-space {
+    background: none;
+    border: none;
+    position: relative;
+}
+
+.letters-gusess span.with-space::before {
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 4px;
+    background-color: #222;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#right-word {
+    text-align: center;
+    background: #009688;
+    margin: 30px auto;
+    width: 300px;
+    padding: 10px;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 15px;
+}
+/* End Hangman Game*/
